@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--    <h2>已开设如下课程：</h2>-->
+    <!--    <my-list :items="lessons"/>-->
+    <h2>num :{{ num }}</h2>
+    <!--使用子组件的时候，传递num到子组件中-->
+    <counter :num="num"></counter>
+</div>
+</body>
+<script src="node_modules/vue/dist/vue.js"></script><!--引入vue.js-->
+<script>
+    // const myList = {
+    //     template: '\
+    //     <ul>\
+    //         <li v-for="item in items" :key="item.id">{{item.id}} : {{item.name}}</li>\
+    //     </ul>\
+    //     ',
+    //     props: {
+    //         items: {
+    //             type: Array,
+    //             default: [],
+    //             required: true
+    //         }
+    //     }
+    // };
+    Vue.component("counter", {// 子组件，定义了两个按钮，点击数字num会加或减
+        template: '\
+        <div>\
+        <button v-on:click="num++">加</button>  \
+        <button v-on:click="num--">减</button>  \
+        </div>',
+        props: ['num']// count是从父组件获取的。
+    });
+    var app = new Vue({
+        el: "#app",
+        // components: {
+        //     myList
+        // },
+        data: {
+            // lessons: [
+            //     {id: 1, name: 'java'},
+            //     {id: 2, name: 'php'},
+            //     {id: 3, name: 'c++'},
+            // ],
+            num: 0
+        },
+        methods:{
+            increment(){
+                
+            }
+        }
+    });
+</script>
+</html>
